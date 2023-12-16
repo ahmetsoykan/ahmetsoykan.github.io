@@ -35,11 +35,11 @@ SQL joins are also expensive (think these are memory pointers). They require sca
 
 DynamoDB closely guards against any operation that won't scale, and there's not a great way to make relational joins scale. Rather than working to make joins scale better, DynamoDB sidesteps the problem by removing the ability to use joins at all.
 
-There're no joins in DynamoDB, they'll need to make multiple, serial requests to fetch both the Orders and the Customer record.
+There're no joins in DynamoDB. There's a need to make multiple, serial requests to fetch both the Orders and the Customer record.
 
 ![Performance](/assets/01/003-performance.png)
 
-This is not scalable by nature: https://www.youtube.com/watch?v=6yqfmXiZTlM&t=1580s
+Joins are not scalable by nature: https://www.youtube.com/watch?v=6yqfmXiZTlM&t=1580s
 
 ## The solution: Pre-join your data into item collections and Single Table Design
 
@@ -64,4 +64,4 @@ This is what single-table design is all about - tuning your table so that your a
 
 ## Simple Twitter data modelling demo and project link
 
-Link: https://github.com/ahmetsoykan/std-with-ddb/blob/main/README.md#std-data-modeling-demo
+[Link]: https://github.com/ahmetsoykan/std-with-ddb/blob/main/README.md#std-data-modeling-demo
