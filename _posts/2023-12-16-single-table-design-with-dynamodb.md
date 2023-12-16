@@ -39,7 +39,7 @@ There're no joins in DynamoDB. There's a need to make multiple, serial requests 
 
 ![Performance](/assets/01/003-performance.png)
 
-Joins are not scalable by nature: https://www.youtube.com/watch?v=6yqfmXiZTlM&t=1580s
+Joins are not scalable by nature: [Link][youtube-link]
 
 ## The solution: Pre-join your data into item collections and Single Table Design
 
@@ -66,4 +66,5 @@ This is what single-table design is all about - tuning your table so that your a
 
 Check out the [demo][demo-link] for more info.
 
+[youtube-link]: https://www.youtube.com/watch?v=6yqfmXiZTlM&t=1580s
 [demo-link]: https://github.com/ahmetsoykan/std-with-ddb/blob/main/README.md#std-data-modeling-demo
