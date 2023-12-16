@@ -39,7 +39,7 @@ There're no joins in DynamoDB. There's a need to make multiple, serial requests 
 
 ![Performance](/assets/01/003-performance.png)
 
-Joins are not scalable by nature: [Link][youtube-link]
+Joins are not scalable when the data grows: [Link][youtube-link]
 
 ## The solution: Pre-join your data into item collections and Single Table Design
 
