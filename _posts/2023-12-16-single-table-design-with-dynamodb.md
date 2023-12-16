@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Single-Table Design with DynamoDB"
+title: "Single Table Design with DynamoDB"
 categories: misc
 ---
 
