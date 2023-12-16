@@ -64,4 +64,6 @@ This is what single-table design is all about - tuning your table so that your a
 
 ## Simple Twitter data modelling demo and project link
 
-[Link]: https://github.com/ahmetsoykan/std-with-ddb/blob/main/README.md#std-data-modeling-demo
+Check out the [demo][demo-link] for more info.
+
+[demo-link]: https://github.com/ahmetsoykan/std-with-ddb/blob/main/README.md#std-data-modeling-demo
