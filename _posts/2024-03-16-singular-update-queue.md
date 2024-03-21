@@ -14,7 +14,7 @@ When the state needs to be updated by multiple concurrent clients, we need it to
 
 Implement a work queue and a single thread working off the queue. Multiple concurrent clients can submit state changes to the queue - but a single thread works on state changes. This can be naturally implemented with goroutines and channels in languages like Go.
 
-## Implementation
+### Implementation
 
 This can be a natural fit for languages or libraries supporting lightweight threads along with the concept of channels(such as Go or Kotlin), All the requests are passed to a single channel to be processed. In Go, there is a single goroutine which processes all the messages to update state. The response is then written to a separate channel and processed by a separate goroutine to send it back to clients as seen in the following code, the requests to update key value are passed onto a single shared request channel:
 
@@ -56,8 +56,11 @@ func main() {
 
 func putKV(w http.ResponseWriter, r *http.Request) {
 
-	reqBody, _ := ioutil.ReadAll(r.Body)
-
+	reqBody, err := ioutil.ReadAll(r.Body)
+	if err != nil {
+		log.Fatal(err)
+	}
+	
 	requestChannel <- string(reqBody)
 
 	select {
@@ -74,6 +77,7 @@ func singularUpdateQueue() {
 	for {
 		select {
 		case e := <-requestChannel:
+			// do the update here as well
 			mapResponse := map[string]string{"Status": "OK", "RequestBody": e}
 			response, err := json.Marshal(mapResponse)
 			if err != nil {

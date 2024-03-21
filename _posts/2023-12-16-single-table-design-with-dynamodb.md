@@ -4,7 +4,7 @@ title: "Single Table Design with DynamoDB"
 categories: misc
 ---
 
-## Intro
+### Intro
 
 DynamoDB is one of the NoSQL databases if the NoSQL terminology is right way to declare it. Here's you can find basic differences between NoSQL and SQL databases.
 
@@ -12,7 +12,7 @@ DynamoDB is one of the NoSQL databases if the NoSQL terminology is right way to 
 
 If we're running OLTP applications which are mostly apps we build today, when the button gets clicked it interacts with the database. In this case NoSQL can be a good choice because it's optimized for the compute and scalable.
 
-## Background on SQL modeling & joins
+### Background on SQL modeling & joins
 
 With relational databases, you generally normalize your data by creating a table for each type of entity in your application. For example, if you're making an e-commerce application, you'll have one table for customers and one table for Orders.
 
@@ -22,14 +22,14 @@ Each Order belongs to a certain Customer(add. benefits [Insertion,Update,Delete 
 
 Joins allow you to combine records from two or more tables at read-time.
 
-## DynamoDB
+### DynamoDB
 
 DynamoDB is a fully managed AWS product for NoSQL database.
 
 ![DDB](/assets/01/002-dynamodb.png)
 
 
-## There are no joins in DynamoDB
+### There are no joins in DynamoDB
 
 SQL joins are also expensive (think these are memory pointers). They require scanning large portions of multiple tables in your relational database, comparing different values, and returning a result set.
 
@@ -41,7 +41,7 @@ There're no joins in DynamoDB. There's a need to make multiple, serial requests 
 
 Joins are not scalable when the data grows: [Link][youtube-link]
 
-## The solution: Pre-join your data into item collections and Single Table Design
+### The solution: Pre-join your data into item collections and Single Table Design
 
 An item collection in DynamoDB refers to all the items in a table or index that share a partition key. In the example below, we have a DynamoDB table that contains actors and the movies in which they have played. The primary key is a composite primary key where the partition key is the actor's name and the sort key is the movie name.
 
@@ -55,14 +55,14 @@ You can use DynamoDB's Query API operation to read multiple items with the same 
 
 This is what single-table design is all about - tuning your table so that your access patterns can be handled with as few requests to DynamoDB as possible, ideally one. 
 
-## Downsides of a single-table design
+### Downsides of a single-table design
 
 - The steep learning curve to understand single-table design.
 - The inflexibility of adding new access patterns. If your access patterns change because you're adding new objects or accessing multiple objects in different ways, you may need to do an ETL process to scan every item in your table and update it with new attributes. This adds friction to your development process.
 - The difficulty of exporting your tables for analytics. DynamoDB is designed for online transactional processing (OLTP), but the DynamoDB is not good at OLAP queries. This is intentional.
 
 
-## Simple Twitter data modelling demo and project link
+### Simple Twitter data modelling demo and project link
 
 Check out the [demo][demo-link] for more info.
 
